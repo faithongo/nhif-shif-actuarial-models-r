@@ -1,74 +1,42 @@
-<div align="center">
+# Actuarial Models in R: Kenya's NHIF to SHIF Transition
 
-# 🏥 Actuarial Models in R: Kenya's NHIF → SHIF Transition
+### Analyzing affordability, default risk, and fund solvency for universal health coverage.
 
-### Can Kenya's poorest households actually afford universal health cover?
+*(Note: This repository contains the R modeling work from my Final Year Project, originally developed collaboratively. This is my personal portfolio copy highlighting my specific contributions.)*
 
-**The R models behind my actuarial case study of the Social Health Insurance Fund: affordability, default risk and fund solvency.**
+## The Problem
+The transition to the Social Health Insurance Fund (SHIF) charges 2.75% of income, with a floor of KES 300/month. This project quantifies the affordability gap for low-income households (e.g., earning KES 5,000) and models the downstream impact on fund solvency and default risk.
 
-[![Report](https://img.shields.io/badge/📑_Full_Report-PDF-2563EB?style=for-the-badge)](https://jessywaweru.github.io/SHIF-Coverage-Gaps-Case-Study.pdf.pdf)
-[![Deck](https://img.shields.io/badge/🎛️_Interactive_Deck-Live-db2777?style=for-the-badge)](https://jessywaweru.github.io/FINAL-YR-PRESENTATION/)
+## My Specific Contributions
+As a core member of this final year project, I was responsible for:
+- **[Writing the `NHIF_time_series.R` script to build the 2016–2024 loss-ratio trajectory and ARIMA forecast.]**
+- **[Cleaning the proxy dataset and engineering the affordability ratio variable for the logistic regression model.]**
+- **[Generating the comparative projection visualizations using `ggplot2`.]**
+- **[Model optimisation by implementing training and testing workflows to identify effective model coefficients]**
+- **[Evaluating model performance using accuracy metrics and prediction testing]**
 
-![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white)
-![ggplot2](https://img.shields.io/badge/ggplot2-276DC3?logo=r&logoColor=white)
-![forecast](https://img.shields.io/badge/forecast_(ARIMA)-276DC3?logo=r&logoColor=white)
-![dplyr](https://img.shields.io/badge/dplyr-276DC3?logo=r&logoColor=white)
+## The Models & Methods
+| Script | Methodology | Business Question Answered |
+| --- | --- | --- |
+| `SHIF_Model.R` | Logistic Regression (`glm`) | What drives a household to default on premiums based on income volatility? |
+| `NHIF_time_series.R` | ARIMA Forecasting (`forecast` package) | What is the projected claims trajectory for 2025–2029 under current trends? |
+| `Affordability_Curve.R` | Data Visualization (`ggplot2`, `scales`) | At what income threshold does the premium become a regressive burden? |
 
-</div>
+## Key Findings
+1. **The Regressive Floor:** The KES 300 minimum creates a severe affordability spike for households earning below KES 10,909.
+2. **Solvency Risk:** Stress-testing the model shows that without targeted subsidies, default rates could threaten fund solvency by [Year/Scenario].
+3. **Recommendation:** An Adjusted Progressive Premium Model (APPM) with tiered pricing and state subsidies (similar to Rwanda's Ubudehe model) is required to cushion seasonal income shocks.
 
----
-
-## 🧠 The question
-
-SHIF charges **2.75% of income, with a floor of KES 300 a month**. That sounds progressive, until you do the maths for someone earning KES 5,000 with most of it already spent on food and rent.
-
-These scripts quantify that gap and what it means for the fund's survival.
-
-## 📈 The findings, in pictures
-
-| The regressive floor | NHIF's deteriorating loss ratio |
-|:---:|:---:|
-| ![Affordability](Affordability_Curve.png) | ![Loss ratio](Figure_4.7_Loss_Ratio.png) |
-| **NHIF vs SHIF contributions** | **Solvency under stress** |
-| ![Comparison](Figure_4_1_SHIF_Graph.png) | ![Solvency](Figure_4_3_SHIF_Solvency.png) |
-
-## 🧮 The models
-
-| Script | What it does |
-|---|---|
-| [`SHIF_Model.R`](SHIF_Model.R) | Simulates a 1,000-household **Homa Bay proxy dataset** (income, seasonality), fits a **logistic regression** of premium default on the affordability ratio, validates it against a null model, and runs **sensitivity scenarios** on fund solvency |
-| [`NHIF_time_series.R`](NHIF_time_series.R) | Builds the 2016–2024 **NHIF loss-ratio trajectory** and an **ARIMA forecast** of claims for 2025–2029 |
-| [`Affordability_Curve.R`](Affordability_Curve.R) | Plots the **affordability burden** across income bands, showing the spike below the KES 10,909 break-even income |
-
+## How to Reproduce
 ```r
-# The heart of it: what drives a household to stop paying?
-glm(Default ~ Ai + Vi + Yi, family = binomial(link = "logit"))
-#   Ai = premium / disposable income   Vi = income volatility   Yi = income
-```
-
-## 💡 The recommendation
-
-An **Adjusted Progressive Premium Model (APPM)**: tiered pricing, targeted state subsidies (based on Rwanda's Ubudehe model), and microfinance partnerships to cushion seasonal income shocks.
-
-The [interactive deck](https://jessywaweru.github.io/FINAL-YR-PRESENTATION/) lets you drag the sliders yourself 🎚️
-
-## ▶️ Reproduce it
-
-```r
+# Install required packages
 install.packages(c("ggplot2", "dplyr", "scales", "forecast", "gridExtra"))
-source("SHIF_Model.R")          # set.seed(2024), so the numbers match exactly
+
+# Run the scripts in order
 source("NHIF_time_series.R")
 source("Affordability_Curve.R")
-```
+source("SHIF_Model.R")
 
----
-
-<div align="center">
-
-**Built by Jessy Bryan Waweru**: actuary by training, full-stack engineer by obsession.
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jessy-waweru-b8051a288)
-[![Email](https://img.shields.io/badge/Email-EA4335?logo=gmail&logoColor=white)](mailto:bryanjessywaweru@gmail.com)
-[![GitHub](https://img.shields.io/badge/More_projects-181717?logo=github)](https://github.com/JessyWaweru)
-
-</div>
+##Acknowledgements
+##This project was developed as part of my final year project at The University of Nairobi.
+##Original collaborative repository: https://github.com/JessyWaweru/actuarial-models-in-r
