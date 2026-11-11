@@ -24,7 +24,7 @@ As a core member of this final year project, I was responsible for:
 
 ## Key Findings
 1. **The Regressive Floor:** The KES 300 minimum creates a severe affordability spike for households earning below KES 10,909.
-2. **Solvency Risk:** Stress-testing the model shows that without targeted subsidies, default rates could threaten fund solvency by [Year/Scenario].
+2. **Solvency Risk:** Stress-testing the model shows that without targeted subsidies, default rates could threaten fund solvency by 2035.
 3. **Recommendation:** An Adjusted Progressive Premium Model (APPM) with tiered pricing and state subsidies (similar to Rwanda's Ubudehe model) is required to cushion seasonal income shocks.
 
 ## How to Reproduce
