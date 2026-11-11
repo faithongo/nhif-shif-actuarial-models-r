@@ -1,11 +1,11 @@
 # Actuarial Models in R: Kenya's NHIF to SHIF Transition
 
-### Analyzing affordability, default risk, and fund solvency for universal health coverage.
+### Analyzing affordability, default risk and fund solvency for universal health coverage.
 
 *(Note: This repository contains the R modeling work from my Final Year Project, originally developed collaboratively. This is my personal portfolio copy highlighting my specific contributions.)*
 
 ## The Problem
-The transition to the Social Health Insurance Fund (SHIF) charges 2.75% of income, with a floor of KES 300/month. This project quantifies the affordability gap for low-income households (e.g., earning KES 5,000) and models the downstream impact on fund solvency and default risk.
+The transition to the Social Health Insurance Fund (SHIF) charges 2.75% of income, with a floor of KES 300/month. This project quantifies the affordability gap for low-income households (e.g earning KES 5,000) and models the downstream impact on fund solvency and default risk.
 
 ## My Specific Contributions
 As a core member of this final year project, I was responsible for:
